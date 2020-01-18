@@ -7,9 +7,11 @@ RUN apt-get update && apt-get install -yq git cmake build-essential \
   libgl1-mesa-dev libsdl2-dev \
   libsdl2-image-dev libsdl2-ttf-dev libsdl2-gfx-dev libboost-all-dev \
   libdirectfb-dev libst-dev mesa-utils xvfb x11vnc \
-  libsdl-sge-dev python3-pip
+  libsdl-sge-dev #python3-pip
 
-RUN python3 -m pip install --upgrade pip
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN python3 get-pip.py --force-reinstall
+# RUN python3 -m pip install --upgrade pip
 RUN pip3 install tensorflow==1.15rc2 dm-sonnet psutil
 
 RUN pip3 install git+https://github.com/openai/baselines.git@master
